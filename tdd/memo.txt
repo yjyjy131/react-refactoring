@@ -1,0 +1,32 @@
+1. unittest
+(1) 발행 버튼을 클릭하면 결재창이 popup 됨 ( render 되는지 확인 )  
+입력 페이지 로드 => 버튼을 클릭하면 이벤트 발생 => popup 창이 render 되었는지 아이디로 검사 
+
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';  
+import Input from './input';
+
+test('button click shows the popup', () => {
+  render(<Input />);
+
+  const button = screen.getByTestId('popupBtn');
+  fireEvent.click(button);
+
+  const popup = screen.getByTestId('popup');
+  expect(popup).toBeInTheDocument();
+		
+});
+
+
+(2) 결재 버튼을 클릭하면 결재 함수가 호출됨 & mock API 가 호출됨 
+https://yong-nyong.tistory.com/45#article-6-2--click-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EA%B4%80%EB%A6%AC
+Click 이벤트 관리 항목. 
+
+
+2. 클린코드 
+- 
+
+3. 리팩토링 
+- 유효성 검사 코드 따로 빼기 
+- 디자인 패턴 : https://www.nextree.io/react-design-pattern/ 프레젠테이션 & 컨테이너
